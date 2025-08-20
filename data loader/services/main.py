@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from schemas import SoldierCreate, SoldierResponse
-from DAL import create_soldier as cs, get_soldier as gs, update_soldier as us, delete_soldier as ds
+from .schemas import SoldierCreate, SoldierResponse
+from .DAL import create_soldier as cs, get_soldier as gs, update_soldier as us, delete_soldier as ds
 
 app = FastAPI()
 

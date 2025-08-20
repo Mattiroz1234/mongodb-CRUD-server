@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from bson import ObjectId
 from fastapi import HTTPException
-from soldier import Soldier
+from .soldier import Soldier
 
 MONGO_URL = "mongodb://localhost:27017"
 client = MongoClient(MONGO_URL)
