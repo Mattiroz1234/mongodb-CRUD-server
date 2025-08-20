@@ -9,7 +9,7 @@ db = client["enemy_soldiers"]
 collection = db["soldier_details"]
 
 
-def create_soldier(data: dict) -> Soldier:
+def create_soldier(data: dict):
     result = collection.insert_one(data)
     return Soldier(
         id=str(result.inserted_id),
@@ -20,7 +20,7 @@ def create_soldier(data: dict) -> Soldier:
     )
 
 
-def get_soldier(soldier_id: str) -> Soldier:
+def get_soldier(soldier_id: str):
     soldier = collection.find_one({"_id": ObjectId(soldier_id)})
     if not soldier:
         raise HTTPException(status_code=404, detail="Soldier not found")
@@ -33,7 +33,7 @@ def get_soldier(soldier_id: str) -> Soldier:
     )
 
 
-def update_soldier(soldier_id: str, data: dict) -> Soldier:
+def update_soldier(soldier_id: str, data: dict):
     updated = collection.find_one_and_update(
         {"_id": ObjectId(soldier_id)},
         {"$set": data},
@@ -50,7 +50,7 @@ def update_soldier(soldier_id: str, data: dict) -> Soldier:
     )
 
 
-def delete_soldier(soldier_id: str) -> bool:
+def delete_soldier(soldier_id: str):
     result = collection.delete_one({"_id": ObjectId(soldier_id)})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Soldier not found")
